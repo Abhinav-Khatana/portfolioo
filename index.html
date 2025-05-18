@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Anushka Dev</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ANUSHKA<br><span class="sub-logo">DEV</span></div>
+   <nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="learnings.html">Learnings</a></li>
+    <li><a href="profiling.html">Personal Profiling</a></li>
+    <li><a href="about.html"      class="active">About</a></li>
+    <li><a href="project.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <main id="home" class="hero">
+    <div class="text-loop">
+      <span>Student</span>
+      <span>Software</span>
+      <span>Etc.</span>
+    </div>
+  </main>
+
+  <section id="intro" class="intro">
+    <p class="animated-text">
+      Welcome to my world! I’m Anushka, a passionate developer and lifelong learner. Here, I share insights
+      on software development, game design, and my journey in the tech space. Scroll down to explore my
+      projects, videos, and get in touch!
+    </p>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const introSection = document.querySelector('.intro');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            introSection.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.5 });
+      observer.observe(introSection);
+    });
+  </script>
+</body>
+</html>

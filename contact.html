@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Me | Anushka Dev</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      Anushka Dev <span class="sub-logo">Portfolio</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="learnings.html">Learnings</a></li>
+        <li><a href="profiling.html">Personal Profiling</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contact-hero">
+    <div class="contact-container">
+      <h1>Contact Me</h1>
+
+      <!-- Feedback message -->
+      <div id="formMessage" class="form-message"></div>
+
+      <!-- Replace YOUR_FORMSPREE_ID with your actual Formspree form ID -->
+      <form id="contactForm" class="contact-form"
+            action="https://formspree.io/f/manovzoy"
+            method="POST">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your name"
+          required
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email"
+          required
+        />
+
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          placeholder="Write your message..."
+          required
+        ></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // AJAX submit to Formspree, show inline confirmation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const msg = document.getElementById('formMessage');
+      
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          msg.textContent = 'Thank you! Your message has been sent.';
+          msg.style.color = '#ff6b81';
+          form.reset();
+        } else {
+          return response.json().then(data => {
+            throw new Error(data.error || 'Form submission failed');
+          });
+        }
+      })
+      .catch(err => {
+        msg.textContent = 'Oops—something went wrong. Please try again.';
+        msg.style.color = '#e05f6a';
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
